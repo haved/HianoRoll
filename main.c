@@ -23,32 +23,7 @@ int main()
 
     DISPLAY_disposeDisplay();
 
-    callbackArray.amount = 1;
-    callbackArray.callbacks[0] = AP_sineWaveCallback;
-    callbackArray.freqCounters[0] = 0;
-    callbackArray.frequencies[0] = 440;
-    callbackArray.volumes[0] = 10000;
-    callbackArray.sampleRates[0] = 44100;
-
-    AP_startPlayingAudio(&callbackArray);
-
-    SDL_Delay(4000);
-
-    callbackArray.callbacks[0] = AP_squareWaveCallback;
-
-    SDL_Delay(4000);
-
-    callbackArray.callbacks[0] = AP_triangleWaveCallback;
-
-    SDL_Delay(4000);
-
-    callbackArray.callbacks[0] = AP_sineWaveCallback;
-
-    SDL_Delay(4000);
-
-    AP_stopPlaying();
-
-    puts("Trying to quit");
+    puts("Trying to SDL_Quit();");
     SDL_Quit();
     puts("Program exited properly. SDL_Quit();");
     return 0;

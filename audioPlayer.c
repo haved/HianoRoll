@@ -75,73 +75,32 @@ int AP_Init()
     return 0;
 }
 
-
-
-
-
-
-
-/*void AP_sineWaveArrayCallback(void* userData, Uint8 *streamIn, int length)
+void AP_playExampleAudio()
 {
-    SineWaveInfoArray* waveArray = (SineWaveInfoArray *) userData;
-    int len = length/2;
-    Sint16* stream = (Sint16*) streamIn;
+    AudioCallbackArray callbackArray;
 
-    for(int i = 0; i < len; i++)
-    {
-        stream[i] = 0;
-        for(int j = 0; j < waveArray->amount; j++)
-            stream[i] += AP_sineWaveCallback(waveArray->waves[j]->volume, waveArray->waves[j]->frequency, waveArray->waves[j]->sampleRate, &waveArray->waves[j]->freqCounter);
-    }
-}
+    callbackArray.amount = 1;
+    callbackArray.callbacks[0] = AP_sineWaveCallback;
+    callbackArray.freqCounters[0] = 0;
+    callbackArray.frequencies[0] = 440;
+    callbackArray.volumes[0] = 10000;
+    callbackArray.sampleRates[0] = 44100;
 
-int AP_startPlayingSineWaves(SineWaveInfoArray* waves)
-{
-    SDL_AudioSpec desiredSpec;
+    AP_startPlayingAudio(&callbackArray);
 
-    SDL_zero(desiredSpec);
-    desiredSpec.freq = 44100;
-    desiredSpec.format = AUDIO_S16SYS;
-    desiredSpec.channels = 1;
-    desiredSpec.samples = 512;
-    desiredSpec.callback = AP_sineWaveArrayCallback;
-    desiredSpec.userdata = waves;
+    SDL_Delay(4000);
 
-    if(SDL_OpenAudio(&desiredSpec, NULL) < 0)
-    {
-        printf("Failed top play audio!\n");
-        return 1;
-    }
+    callbackArray.callbacks[0] = AP_squareWaveCallback;
 
-    SDL_PauseAudio(0);
+    SDL_Delay(4000);
 
-    return 0;
-}
+    callbackArray.callbacks[0] = AP_triangleWaveCallback;
 
-void AP_playExampleSound()
-{
-    SineWaveInfoArray waves;
-    SineWaveInfoArray* waveArray = &waves;
-    SineWaveInfo wave;
-    wave.volume = 10000;
-    wave.sampleRate = 44100;
-    wave.frequency = 440;
-    wave.freqCounter = 0;
+    SDL_Delay(4000);
 
-    SineWaveInfo wave2 = wave;
-    wave2.frequency = 554.37f;
-
-    SineWaveInfo wave3 = wave;
-    wave3.frequency = 659.25f;
-
-    waveArray->amount=3;
-    waveArray->waves[0]=&wave;
-    waveArray->waves[1]=&wave2;
-    waveArray->waves[2]=&wave3;
-
-    AP_startPlayingSineWaves(waveArray);
+    callbackArray.callbacks[0] = AP_sineWaveCallback;
 
     SDL_Delay(4000);
 
     AP_stopPlaying();
-}*/
+}
