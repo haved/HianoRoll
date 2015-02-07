@@ -3,7 +3,7 @@
 
 typedef struct
 {
-    int (*callbacks[10])(Sint16, int, int, int*);
+    Sint16 (*callbacks[10])(Sint16, int, int, int*);
     Sint16 volumes[10];
     int frequencies[10];
     int freqCounters[10];
