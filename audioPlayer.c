@@ -23,7 +23,7 @@ Sint16 AP_triangleWaveCallback(Sint16 volume, int frequency, int sampleRate, int
 void audioCallback(void* userData, Uint8 *streamIn, int length)
 {
     puts("BeginningCallback");
-    /*AudioCallbackArray* callbackArray = (AudioCallbackArray *) userData;
+    AudioCallbackArray* callbackArray = (AudioCallbackArray *) userData;
     int len = length/2;
     Sint16* stream = (Sint16*) streamIn;
 
@@ -33,7 +33,7 @@ void audioCallback(void* userData, Uint8 *streamIn, int length)
         for(int j = 0; j < callbackArray->amount; j++)
             stream[i] += (*(callbackArray->callbacks[j]))(callbackArray->volumes[j], callbackArray->frequencies[j], callbackArray->sampleRates[j], &callbackArray->freqCounters[j]);
             printf("%d\n", stream[i]);
-    }*/
+    }
     puts("FinishedCallback");
 }
 
@@ -81,7 +81,7 @@ int AP_Init()
 
 
 
-/*void sineWaveCallback(void* userData, Uint8 *streamIn, int length)
+void AP_sineWaveArrayCallback(void* userData, Uint8 *streamIn, int length)
 {
     SineWaveInfoArray* waveArray = (SineWaveInfoArray *) userData;
     int len = length/2;
@@ -91,7 +91,7 @@ int AP_Init()
     {
         stream[i] = 0;
         for(int j = 0; j < waveArray->amount; j++)
-            stream[i] += sineWave(waveArray->waves[j]->volume, waveArray->waves[j]->frequency, waveArray->waves[j]->sampleRate, &waveArray->waves[j]->freqCounter);
+            stream[i] += AP_sineWaveCallback(waveArray->waves[j]->volume, waveArray->waves[j]->frequency, waveArray->waves[j]->sampleRate, &waveArray->waves[j]->freqCounter);
     }
 }
 
@@ -104,7 +104,7 @@ int AP_startPlayingSineWaves(SineWaveInfoArray* waves)
     desiredSpec.format = AUDIO_S16SYS;
     desiredSpec.channels = 1;
     desiredSpec.samples = 512;
-    desiredSpec.callback = *sineWaveCallback;
+    desiredSpec.callback = AP_sineWaveArrayCallback;
     desiredSpec.userdata = waves;
 
     if(SDL_OpenAudio(&desiredSpec, NULL) < 0)
@@ -116,9 +116,9 @@ int AP_startPlayingSineWaves(SineWaveInfoArray* waves)
     SDL_PauseAudio(0);
 
     return 0;
-}*/
+}
 
-/*void playExampleSound()
+void AP_playExampleSound()
 {
     SineWaveInfoArray waves;
     SineWaveInfoArray* waveArray = &waves;
@@ -141,7 +141,7 @@ int AP_startPlayingSineWaves(SineWaveInfoArray* waves)
 
     AP_startPlayingSineWaves(waveArray);
 
-    SDL_Delay(10000);
+    SDL_Delay(4000);
 
     AP_stopPlaying();
-}*/
+}

@@ -22,10 +22,23 @@ int AP_startPlayingAudio(AudioCallbackArray* callbacks);
 void AP_stopPlaying();
 
 
-/*typedef struct
+
+
+typedef struct
+{
+    Sint16 volume;
+    int frequency;
+    int freqCounter;
+    int sampleRate;
+} SineWaveInfo;
+
+typedef struct
 {
     int amount;
     SineWaveInfo* waves[10];
-} SineWaveInfoArray;*/
+} SineWaveInfoArray;
+
+void AP_sineWaveArrayCallback(void* userData, Uint8* streamIn, int length);
+int AP_startPlayingSineWaves(SineWaveInfoArray* waves);
 
 #endif // AUDIOPLAYER_H_INCLUDED
