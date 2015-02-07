@@ -17,12 +17,13 @@ Sint16 AP_squareWaveCallback(Sint16 volume, int frequency, int sampleRate, int* 
 
 Sint16 AP_triangleWaveCallback(Sint16 volume, int frequency, int sampleRate, int* freqCounter)
 {
-    return volume;
+    int val = 4 * abs((*freqCounter % sampleRate) - sampleRate/2) - sampleRate;
+    *freqCounter += frequency;
+    return (Sint16)((volume * val)/sampleRate);
 }
 
 void audioCallback(void* userData, Uint8 *streamIn, int length)
 {
-    puts("BeginningCallback");
     AudioCallbackArray* callbackArray = (AudioCallbackArray *) userData;
     int len = length/2;
     Sint16* stream = (Sint16*) streamIn;
@@ -34,7 +35,6 @@ void audioCallback(void* userData, Uint8 *streamIn, int length)
             stream[i] += (*(callbackArray->callbacks[j]))(callbackArray->volumes[j], callbackArray->frequencies[j], callbackArray->sampleRates[j], &callbackArray->freqCounters[j]);
             printf("%d\n", stream[i]);
     }
-    puts("FinishedCallback");
 }
 
 int AP_startPlayingAudio(AudioCallbackArray* callbacks)
@@ -81,7 +81,7 @@ int AP_Init()
 
 
 
-void AP_sineWaveArrayCallback(void* userData, Uint8 *streamIn, int length)
+/*void AP_sineWaveArrayCallback(void* userData, Uint8 *streamIn, int length)
 {
     SineWaveInfoArray* waveArray = (SineWaveInfoArray *) userData;
     int len = length/2;
@@ -144,4 +144,4 @@ void AP_playExampleSound()
     SDL_Delay(4000);
 
     AP_stopPlaying();
-}
+}*/

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1423305968 source:/home/havard/Development/C/HianoRoll/main.c
+1423314379 source:/home/havard/Development/C/HianoRoll/main.c
 	"includes.h"
 
 1423249626 /home/havard/Development/C/HianoRoll/display.h
@@ -7,10 +7,10 @@
 1423250373 source:/home/havard/Development/C/HianoRoll/display.c
 	"includes.h"
 
-1423305132 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
+1423314032 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
 	"includes.h"
 
-1423305084 /home/havard/Development/C/HianoRoll/audioPlayer.h
+1423314407 /home/havard/Development/C/HianoRoll/audioPlayer.h
 
 1423267959 /home/havard/Development/C/HianoRoll/includes.h
 	<stdio.h>
