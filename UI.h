@@ -3,6 +3,7 @@
 
 #define MIN_NOTE 13
 #define MAX_NOTE 73
+#define NOTE_AMOUNT 61 //73-13+1
 #define A_NOTE 49
 
 typedef struct{
