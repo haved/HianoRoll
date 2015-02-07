@@ -1,5 +1,7 @@
 #include "includes.h"
 
+AudioCallbackArray callbackArray;
+
 int main()
 {
     if(AP_Init())
@@ -9,8 +11,19 @@ int main()
 
     UI_init();
 
+    callbackArray.amount = 1;
+    callbackArray.callbacks[0] = AP_sineWaveCallback;
+    callbackArray.freqCounters[0] = 0;
+    callbackArray.frequencies[0] = 440;
+    callbackArray.volumes[0] = 10000;
+    callbackArray.sampleRates[0] = 44100;
+
+    //AP_startPlayingAudio(&callbackArray);
+
     while(!DISPLAY_isDisplayClosed())
     {
+        puts("FreqCounter:");
+        printInt(callbackArray.freqCounters[0]);
         INPUT_update();
         UI_updateUI();
         DISPLAY_clearDisplay(1.0f, 0.5f, 0.2f, 1.0f);
@@ -21,35 +34,15 @@ int main()
 
     DISPLAY_disposeDisplay();
 
+    puts("Tryingtoquit!");
     SDL_Quit();
-    printf("Program exited properly. SDL_Quit();\n");
+    puts("Program exited properly. SDL_Quit();");
     return 0;
 }
 
-void playExampleSound()
+void printInt(int i)
 {
-    SineWaveInfoArray waves;
-    SineWaveInfoArray* waveArray = &waves;
-    SineWaveInfo wave;
-    wave.volume = 10000;
-    wave.sampleRate = 44100;
-    wave.frequency = 440;
-    wave.freqCounter = 0;
-
-    SineWaveInfo wave2 = wave;
-    wave2.frequency = 554.37f;
-
-    SineWaveInfo wave3 = wave;
-    wave3.frequency = 659.25f;
-
-    waveArray->amount=3;
-    waveArray->waves[0]=&wave;
-    waveArray->waves[1]=&wave2;
-    waveArray->waves[2]=&wave3;
-
-    AP_startPlayingSineWaves(waveArray);
-
-    SDL_Delay(10000);
-
-    AP_stopPlaying();
+    char tmp[32];
+    snprintf(tmp, sizeof tmp, "%d", i);
+    puts(tmp);
 }

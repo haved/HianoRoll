@@ -17,6 +17,8 @@
 #include "renderer.h"
 #include "input.h"
 
+void printInt(int i);
+
 #define PI 3.14159265
 
 #endif // INCLUDES_H_INCLUDED
