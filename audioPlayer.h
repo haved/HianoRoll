@@ -3,11 +3,11 @@
 
 typedef struct
 {
-    Sint16 (*callbacks[10])(Sint16, int, int, int*);
-    Sint16 volumes[10];
-    int frequencies[10];
-    int freqCounters[10];
-    int sampleRates[10];
+    Sint16 (*callbacks[MAX_TRACKS])(Sint16, int, int, int*);
+    Sint16 volumes[MAX_TRACKS];
+    int frequencies[MAX_TRACKS];
+    int freqCounters[MAX_TRACKS];
+    int sampleRates[MAX_TRACKS];
     int amount;
 } AudioCallbackArray;
 
@@ -20,6 +20,11 @@ Sint16 AP_triangleWaveCallback(Sint16 volume, int frequency, int sampleRate, int
 void audioCallback(void* userData, Uint8* stream, int length);
 int AP_startPlayingAudio(AudioCallbackArray* callbacks);
 void AP_stopPlaying();
+
+int noteToFrequency(int note);
+bool isNoteBlack(int note);
+
+void AP_playExampleAudio();
 
 
 

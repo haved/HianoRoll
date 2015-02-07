@@ -75,6 +75,16 @@ int AP_Init()
     return 0;
 }
 
+int noteToFrequency(int note)
+{
+    return pow(2,note-49/12)*440;
+}
+
+bool isNoteBlack(int note)
+{
+    return (((note-4) % 12) < 5) ^ ((note%2)==0);
+}
+
 void AP_playExampleAudio()
 {
     AudioCallbackArray callbackArray;

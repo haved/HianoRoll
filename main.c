@@ -1,7 +1,5 @@
 #include "includes.h"
 
-AudioCallbackArray callbackArray;
-
 int main()
 {
     if(AP_Init())

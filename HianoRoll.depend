@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1423336667 source:/home/havard/Development/C/HianoRoll/main.c
+1423343061 source:/home/havard/Development/C/HianoRoll/main.c
 	"includes.h"
 
 1423249626 /home/havard/Development/C/HianoRoll/display.h
@@ -7,12 +7,12 @@
 1423250373 source:/home/havard/Development/C/HianoRoll/display.c
 	"includes.h"
 
-1423336889 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
+1423343094 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
 	"includes.h"
 
-1423339332 /home/havard/Development/C/HianoRoll/audioPlayer.h
+1423342295 /home/havard/Development/C/HianoRoll/audioPlayer.h
 
-1423267959 /home/havard/Development/C/HianoRoll/includes.h
+1423342246 /home/havard/Development/C/HianoRoll/includes.h
 	<stdio.h>
 	<GL/glew.h>
 	<GL/gl.h>
@@ -26,9 +26,9 @@
 	"renderer.h"
 	"input.h"
 
-1423339327 /home/havard/Development/C/HianoRoll/UI.h
+1423341257 /home/havard/Development/C/HianoRoll/UI.h
 
-1423337804 source:/home/havard/Development/C/HianoRoll/UI.c
+1423342269 source:/home/havard/Development/C/HianoRoll/UI.c
 	"includes.h"
 
 1423254719 /home/havard/Development/C/HianoRoll/renderer.h
