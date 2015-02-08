@@ -10,6 +10,7 @@ void DISPLAY_disposeDisplay();
 void DISPLAY_clearDisplay(float r, float g, float b, float a);
 void DISPLAY_updateDisplay();
 void DISPLAY_resizeDisplay(int width, int height);
+void DISPLAY_closeDisplay();
 bool DISPLAY_isDisplayClosed();
 int DISPLAY_getDisplayWidth();
 int DISPLAY_getDisplayHeight();

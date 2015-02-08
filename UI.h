@@ -14,6 +14,7 @@ typedef struct{
 void UI_init();
 void UI_updateUI();
 void UI_updateMiddleBar();
+void UI_handeScroll();
 void UI_renderUI();
 void UI_renderTracks(int y, int y2, TracksRendererInfo info);
 

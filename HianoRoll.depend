@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1423343222 source:/home/havard/Development/C/HianoRoll/main.c
+1423386932 source:/home/havard/Development/C/HianoRoll/main.c
 	"includes.h"
 
-1423249626 /home/havard/Development/C/HianoRoll/display.h
+1423386637 /home/havard/Development/C/HianoRoll/display.h
 
-1423250373 source:/home/havard/Development/C/HianoRoll/display.c
+1423386660 source:/home/havard/Development/C/HianoRoll/display.c
 	"includes.h"
 
 1423343094 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
@@ -12,7 +12,7 @@
 
 1423342295 /home/havard/Development/C/HianoRoll/audioPlayer.h
 
-1423342246 /home/havard/Development/C/HianoRoll/includes.h
+1423386961 /home/havard/Development/C/HianoRoll/includes.h
 	<stdio.h>
 	<GL/glew.h>
 	<GL/gl.h>
@@ -36,8 +36,8 @@
 1423254672 source:/home/havard/Development/C/HianoRoll/renderer.c
 	"includes.h"
 
-1423257513 /home/havard/Development/C/HianoRoll/input.h
+1423387013 /home/havard/Development/C/HianoRoll/input.h
 
-1423265660 source:/home/havard/Development/C/HianoRoll/input.c
+1423386833 source:/home/havard/Development/C/HianoRoll/input.c
 	"includes.h"
 

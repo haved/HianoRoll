@@ -34,16 +34,6 @@ bool DISPLAY_closed;
 void DISPLAY_updateDisplay()
 {
     SDL_GL_SwapWindow(DISPLAY_window);
-
-    SDL_Event e;
-
-    while(SDL_PollEvent(&e))
-        switch(e.type)
-        {
-            case SDL_QUIT: DISPLAY_closed = true; break;
-            case SDL_WINDOWEVENT: if(e.window.event == SDL_WINDOWEVENT_RESIZED) DISPLAY_resizeDisplay(e.window.data1, e.window.data2); break;
-            default: break;
-        }
 }
 
 void DISPLAY_clearDisplay(float r, float g , float b, float a)
@@ -64,6 +54,11 @@ void DISPLAY_resizeDisplay(int width, int height)
     glLoadIdentity();
     glOrtho(0, width, height, 0, -1, 1);
     glMatrixMode(GL_MODELVIEW_MATRIX);
+}
+
+void DISPLAY_closeDisplay()
+{
+    DISPLAY_closed = true;
 }
 
 bool DISPLAY_isDisplayClosed()

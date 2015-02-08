@@ -13,25 +13,12 @@
 #include <stdbool.h>
 #include <sys/types.h>
 
+#include "main.h"
 #include "display.h"
 #include "audioPlayer.h"
 #include "UI.h"
 #include "renderer.h"
 #include "input.h"
-
-typedef struct{
-    Sint16 (*instrument)(Sint16, int, int, int*);
-} Track;
-
-typedef struct
-{
-    Track tracks[MAX_TRACKS];
-    int amount;
-} TrackArray;
-
-TrackArray trackArray;
-
-void printInt(int i);
 
 #define PI 3.14159265
 

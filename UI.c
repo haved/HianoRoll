@@ -19,6 +19,8 @@ void UI_init()
 void UI_updateUI()
 {
     UI_updateMiddleBar();
+    if(INPUT_getMouseScroll()!=0)
+        UI_handleScroll();
 }
 
 bool m_middleBarHeld;
@@ -43,6 +45,11 @@ void UI_updateMiddleBar()
 
     if(UI_middleBar > DISPLAY_getDisplayHeight()-MIDDLE_BAR_SIZE)
         UI_middleBar = DISPLAY_getDisplayHeight()-MIDDLE_BAR_SIZE;
+}
+
+void UI_handleScroll()
+{
+
 }
 
 void UI_renderUI()
