@@ -32,14 +32,14 @@ void UI_updateUI()
     if((topPanelRenderInfo.panY*topPanelRenderInfo.zoom) > UI_middleBar-MIDDLE_BAR_SIZE-10)
         topPanelRenderInfo.panY = (UI_middleBar-MIDDLE_BAR_SIZE-10)/topPanelRenderInfo.zoom;
 
-    if(((topPanelRenderInfo.panY+trackArray.amount*NOTE_AMOUNT)*topPanelRenderInfo.zoom) < 10)
-        topPanelRenderInfo.panY = 10/topPanelRenderInfo.zoom - trackArray.amount*NOTE_AMOUNT;
+    if(((topPanelRenderInfo.panY+trackArray.amount*(NOTE_AMOUNT+1))*topPanelRenderInfo.zoom) < 10)
+        topPanelRenderInfo.panY = 10/topPanelRenderInfo.zoom - trackArray.amount*(NOTE_AMOUNT+1);
 
-    if((bottomPanelRenderInfo.panY*bottomPanelRenderInfo.zoom) > DISPLAY_getDisplayHeight()-10)
-        topPanelRenderInfo.panY = (DISPLAY_getDisplayHeight()-10)/bottomPanelRenderInfo.zoom;
+    if((bottomPanelRenderInfo.panY*bottomPanelRenderInfo.zoom) > DISPLAY_getDisplayHeight()-UI_middleBar-MIDDLE_BAR_SIZE-10)
+        bottomPanelRenderInfo.panY = (DISPLAY_getDisplayHeight()-UI_middleBar-MIDDLE_BAR_SIZE-10)/bottomPanelRenderInfo.zoom;
 
-    if(((topPanelRenderInfo.panY+trackArray.amount*NOTE_AMOUNT)*topPanelRenderInfo.zoom) < 10)
-        topPanelRenderInfo.panY = 10/topPanelRenderInfo.zoom - trackArray.amount*NOTE_AMOUNT;
+    if(((bottomPanelRenderInfo.panY+trackArray.amount*(NOTE_AMOUNT+1))*bottomPanelRenderInfo.zoom) < 10)
+        bottomPanelRenderInfo.panY = 10/bottomPanelRenderInfo.zoom - trackArray.amount*(NOTE_AMOUNT+1);
 }
 
 bool m_middleBarHeld;
@@ -100,6 +100,7 @@ void UI_renderUI()
     RENDER_fillRect(0, UI_middleBar-MIDDLE_BAR_SIZE, DISPLAY_getDisplayWidth(), UI_middleBar+MIDDLE_BAR_SIZE);
 }
 
+int tmp_yLoc;
 void UI_renderTracks(int y, int y2, TracksRendererInfo info)
 {
     RENDER_setColorf(0.4f, 0.4f, 0.4f, 1);
@@ -109,11 +110,14 @@ void UI_renderTracks(int y, int y2, TracksRendererInfo info)
     for(int i = 0; i < trackArray.amount; i++)
     {
         glPushMatrix();
-        glTranslatef(0, i*(NOTE_AMOUNT+1)*info.zoom, 0);
         RENDER_setColor(trackArray.tracks[i].color);
-        RENDER_fillRect(-TRACK_INFO_BAR_SIZE, 0, 0, (NOTE_AMOUNT)*info.zoom);
+        glTranslatef(0, i*(NOTE_AMOUNT+1)*info.zoom, 0);
+        RENDER_fillRect(-TRACK_INFO_BAR_SIZE, 0, 0, NOTE_AMOUNT*info.zoom);
         for(int j = MAX_NOTE; j >= MIN_NOTE; j--)
         {
+            tmp_yLoc = (i*(NOTE_AMOUNT+1)+NOTE_AMOUNT-(j-MIN_NOTE)+info.panY)*info.zoom;
+            if((tmp_yLoc<0) | (tmp_yLoc>y2-y))
+                continue;
             if(j==A_NOTE)
                 continue;
             if(isNoteBlack(j))
