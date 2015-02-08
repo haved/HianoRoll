@@ -7,6 +7,7 @@ bool INPUT_mouseDown;
 void INPUT_update()
 {
     SDL_PumpEvents();
+    INPUT_mouseScroll = 0;
     INPUT_mouseDown = SDL_GetMouseState(&INPUT_mouseX, &INPUT_mouseY) & SDL_BUTTON(SDL_BUTTON_LEFT);
 }
 

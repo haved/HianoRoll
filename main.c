@@ -11,8 +11,8 @@ int main()
 
     while(!DISPLAY_isDisplayClosed())
     {
-        pollEvents();
         INPUT_update();
+        pollEvents();
         UI_updateUI();
         DISPLAY_clearDisplay(1.0f, 0.5f, 0.2f, 1.0f);
         UI_renderUI();

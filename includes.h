@@ -13,11 +13,11 @@
 #include <stdbool.h>
 #include <sys/types.h>
 
+#include "renderer.h"
 #include "main.h"
 #include "display.h"
 #include "audioPlayer.h"
 #include "UI.h"
-#include "renderer.h"
 #include "input.h"
 
 #define PI 3.14159265

@@ -13,7 +13,11 @@ void UI_init()
     UI_middleBar = DISPLAY_getDisplayHeight() / 2;
     topPanelRenderInfo.zoom=2;
     bottomPanelRenderInfo.zoom=4;
+
+
     trackArray.amount = 2;
+    SET_color(&trackArray.tracks[0].color, 0.3f, 0.3f, 0.9f, 1);
+    SET_color(&trackArray.tracks[1].color, 0.3f, 0.9f, 0.3f, 1);
 }
 
 void UI_updateUI()
@@ -49,36 +53,49 @@ void UI_updateMiddleBar()
 
 void UI_handleScroll()
 {
+    if(INPUT_getMouseY()<UI_middleBar-MIDDLE_BAR_SIZE)
+        topPanelRenderInfo.zoom += (INPUT_getMouseScroll()>0?1:-1);
+    if(INPUT_getMouseY()>UI_middleBar+MIDDLE_BAR_SIZE)
+        bottomPanelRenderInfo.zoom += (INPUT_getMouseScroll()>0?1:-1);
 
+    if(topPanelRenderInfo.zoom <= 1)
+        topPanelRenderInfo.zoom = 1;
+    if(bottomPanelRenderInfo.zoom <= 1)
+        bottomPanelRenderInfo.zoom = 1;
 }
 
 void UI_renderUI()
 {
     UI_renderTracks(0, UI_middleBar-MIDDLE_BAR_SIZE, topPanelRenderInfo);
     UI_renderTracks(UI_middleBar+MIDDLE_BAR_SIZE, DISPLAY_getDisplayHeight(), bottomPanelRenderInfo);
-    RENDER_setColor(0.7f, 0.7f, 0.7f, 1);
+    RENDER_setColorf(0.7f, 0.7f, 0.7f, 1);
     RENDER_fillRect(0, UI_middleBar-MIDDLE_BAR_SIZE, DISPLAY_getDisplayWidth(), UI_middleBar+MIDDLE_BAR_SIZE);
 }
 
 void UI_renderTracks(int y, int y2, TracksRendererInfo info)
 {
-    RENDER_setColor(0.4f, 0.4f, 0.4f, 1);
+    RENDER_setColorf(0.4f, 0.4f, 0.4f, 1);
     RENDER_fillRect(0, y, TRACK_INFO_BAR_SIZE, y2);
     glPushMatrix();
     glTranslatef(TRACK_INFO_BAR_SIZE-KEY_COLOR_WIDTH, y+info.panY * info.zoom, 0);
     for(int i = 0; i < trackArray.amount; i++)
     {
-        for(int j = MIN_NOTE; j <= MAX_NOTE; j++)
+        glPushMatrix();
+        glTranslatef(0, i*NOTE_AMOUNT*info.zoom, 0);
+        RENDER_setColor(trackArray.tracks[i].color);
+        RENDER_fillRect(-TRACK_INFO_BAR_SIZE+KEY_COLOR_WIDTH, 3, KEY_COLOR_WIDTH, NOTE_AMOUNT*info.zoom-3);
+        for(int j = MAX_NOTE; j >= MIN_NOTE; j--)
         {
+            if(j==A_NOTE)
+                continue;
             if(isNoteBlack(j))
-                RENDER_setColor(0, 0, 0, 1);
+                RENDER_setColorf(0, 0, 0, 1);
             else
-                RENDER_setColor(1, 1, 1, 1);
-            if(j == A_NOTE)
-                RENDER_setColor(0.4f, 0.4f, 0.9f, 1);
+                RENDER_setColorf(1, 1, 1, 1);
 
-            RENDER_fillRect(0, (i*NOTE_AMOUNT+j-MIN_NOTE)*info.zoom, KEY_COLOR_WIDTH, (i*NOTE_AMOUNT+j-MIN_NOTE+1)*info.zoom);
+            RENDER_fillRect(0, (NOTE_AMOUNT-(j-MIN_NOTE))*info.zoom, KEY_COLOR_WIDTH, (NOTE_AMOUNT-(j-MIN_NOTE+1))*info.zoom);
         }
+        glPopMatrix();
     }
     glPopMatrix();
 }

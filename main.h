@@ -3,6 +3,7 @@
 
 typedef struct{
     Sint16 (*instrument)(Sint16, int, int, int*);
+    Color color;
 } Track;
 
 typedef struct
