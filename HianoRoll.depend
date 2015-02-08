@@ -7,7 +7,7 @@
 1423386660 source:/home/havard/Development/C/HianoRoll/display.c
 	"includes.h"
 
-1423343094 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
+1423393800 source:/home/havard/Development/C/HianoRoll/audioPlayer.c
 	"includes.h"
 
 1423342295 /home/havard/Development/C/HianoRoll/audioPlayer.h
@@ -27,9 +27,9 @@
 	"UI.h"
 	"input.h"
 
-1423387437 /home/havard/Development/C/HianoRoll/UI.h
+1423394752 /home/havard/Development/C/HianoRoll/UI.h
 
-1423387418 source:/home/havard/Development/C/HianoRoll/UI.c
+1423395352 source:/home/havard/Development/C/HianoRoll/UI.c
 	"includes.h"
 
 1423388454 /home/havard/Development/C/HianoRoll/renderer.h
@@ -37,9 +37,9 @@
 1423388502 source:/home/havard/Development/C/HianoRoll/renderer.c
 	"includes.h"
 
-1423387013 /home/havard/Development/C/HianoRoll/input.h
+1423392679 /home/havard/Development/C/HianoRoll/input.h
 
-1423387487 source:/home/havard/Development/C/HianoRoll/input.c
+1423393860 source:/home/havard/Development/C/HianoRoll/input.c
 	"includes.h"
 
 1423388109 /home/havard/Development/C/HianoRoll/main.h

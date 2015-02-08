@@ -46,7 +46,7 @@ int AP_startPlayingAudio(AudioCallbackArray* callbacks)
     desiredSpec.format = AUDIO_S16SYS;
     desiredSpec.channels = 1;
     desiredSpec.samples = 512;
-    desiredSpec.callback = audioCallback;
+    desiredSpec.callback = *audioCallback;
     desiredSpec.userdata = callbacks;
 
     if(SDL_OpenAudio(&desiredSpec, NULL) < 0)

@@ -7,14 +7,15 @@
 #define A_NOTE 49
 
 typedef struct{
-    int panY;
-    int zoom;
+    float panY;
+    float zoom;
 } TracksRendererInfo;
 
 void UI_init();
 void UI_updateUI();
 void UI_updateMiddleBar();
 void UI_handleScroll();
+void UI_handlePan();
 void UI_renderUI();
 void UI_renderTracks(int y, int y2, TracksRendererInfo info);
 
